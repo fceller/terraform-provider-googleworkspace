@@ -23,16 +23,16 @@ echo -n "Building... "
 for os in ${OS}; do
     for arch in ${ARCH}; do
         echo -n "${os}_${arch} "
-        env GOOS=${os} GOARCH=${arch} go build -o "output/terraform-provider-slack_${TAG}_${os}_${arch}/terraform-provider-slack_${TAG}"
-        cp README.md output/terraform-provider-slack_${TAG}_${os}_${arch}
-        cp LICENSE output/terraform-provider-slack_${TAG}_${os}_${arch}
+        env GOOS=${os} GOARCH=${arch} go build -o "output/terraform-provider-googleworkspace_${TAG}_${os}_${arch}/terraform-provider-googleworkspace_${TAG}"
+        cp README.md output/terraform-provider-googleworkspace_${TAG}_${os}_${arch}
+        cp LICENSE output/terraform-provider-googleworkspace_${TAG}_${os}_${arch}
 
 
         if test -n "${dest}"; then
             mkdir -p "${dest}/.terraform.d/plugins/local/fceller/slack/${TAG}/${os}_${arch}"
             cp \
-                "output/terraform-provider-slack_${TAG}_${os}_${arch}/terraform-provider-slack_${TAG}" \
-                "${dest}/.terraform.d/plugins/local/fceller/slack/${TAG}/${os}_${arch}/terraform-provider-slack"
+                "output/terraform-provider-googleworkspace_${TAG}_${os}_${arch}/terraform-provider-googleworkspace_${TAG}" \
+                "${dest}/.terraform.d/plugins/local/fceller/slack/${TAG}/${os}_${arch}/terraform-provider-googleworkspace"
         fi
     done
 done
@@ -51,10 +51,10 @@ for PLATFORM in $(find ./output -mindepth 1 -maxdepth 1 -type d); do
     popd >/dev/null 2>&1
 
     pushd artifacts >/dev/null 2>&1
-    shasum -a 256 ${OSARCH}.zip >> terraform-provider-slack_${TAG}_SHA256SUMS
+    shasum -a 256 ${OSARCH}.zip >> terraform-provider-googleworkspace_${TAG}_SHA256SUMS
     popd >/dev/null 2>&1
 done
 
 pushd artifacts >/dev/null 2>&1
-gpg --detach-sign terraform-provider-slack_${TAG}_SHA256SUMS 
+gpg --detach-sign terraform-provider-googleworkspace_${TAG}_SHA256SUMS 
 popd >/dev/null 2>&1
