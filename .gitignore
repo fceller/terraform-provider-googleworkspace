@@ -1,12 +1,14 @@
 *.dll
 *.exe
 .DS_Store
+artifacts
 example.tf
 terraform.tfplan
 terraform.tfstate
 bin/
 dist/
 modules-dev/
+output
 /pkg/
 website/.vagrant
 website/.bundle
