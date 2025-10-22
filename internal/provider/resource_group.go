@@ -84,6 +84,7 @@ func resourceGroup() *schema.Resource {
 				Description: "asps.list of group's email addresses.",
 				Type:        schema.TypeList,
 				Optional:    true,
+				DiffSuppressFunc: diffSuppressAliases,
 				Elem: &schema.Schema{
 					Type: schema.TypeString,
 				},
